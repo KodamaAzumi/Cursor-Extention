@@ -1,0 +1,13 @@
+#p5Canvas {
+    position: absolute;
+    z-index: 2147483647;
+    pointer-events: none;
+}
+
+body, a:hover, div:hover, span:hover, img:hover, svg:hover{
+    cursor: none;
+}
+
+#image_place{
+    z-index: 2147483647;
+}
