@@ -61,7 +61,7 @@ function setup() {
 
 function draw() { 
     clear();
-    background('rgba(0, 0, 0, 0)');
+    background('rgba(0, 0, 0, 0.3)');
     image(img, mouseX, mouseY);
 }
 
