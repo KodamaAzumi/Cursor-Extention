@@ -8,6 +8,10 @@ body, a:hover, div:hover, span:hover, img:hover, svg:hover{
     cursor: none;
 }
 
-#image_place{
+#stalker {
+    pointer-events: none;
+    position: fixed;
+    top: 0px;     
+    left: 0px;  
     z-index: 2147483647;
 }

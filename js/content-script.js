@@ -1,3 +1,5 @@
+/*
+
 //chrome.storage.local.clear();
 let data = {};
 console.log(window.location.href);
@@ -65,26 +67,63 @@ function draw() {
     image(img, mouseX, mouseY);
 }
 
-
-/*
-const imagePath = '../images/image1.png';
-const src = chrome.runtime.getURL(imagePath);
-document.body.insertAdjacentHTML('afterbegin', '<img id="image_place">');
-const image = document.getElementById("image_place");
-console.log(image);
-image.src = src;
-
-function setup() {
-    document.body.insertAdjacentHTML('afterbegin', '<div id="p5Canvas"></div>');
-    let canvas = createCanvas(document.body.clientWidth, document.body.clientHeight);
-    canvas.parent('p5Canvas');
-    background('rgba(0, 0, 0, 0)');
-    
-};
-
-function draw(){
-    image.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    image.style.zIndex = '30';
-    image.style.position = 'absolute';
-}
 */
+
+//chrome.storage.local.clear();
+let data = {};
+
+const imagePath = '../images/cursor1.svg';
+const src = chrome.runtime.getURL(imagePath);
+
+const img = document.createElement('img');
+img.id = 'stalker';
+img.src = src;
+document.body.appendChild(img);       
+
+const stalker = document.getElementById('stalker');
+console.log(stalker);
+
+document.addEventListener('mousemove', (e) => {
+    stalker.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px)';
+});
+
+// 画像の初期サイズ
+const corsor = 16;
+
+stalker.style.width = `${corsor}px`;
+
+chrome.storage.local.get(null, (result) => {
+    data = result;
+    console.log(result);
+    for(const key in data) {
+        console.log(key);
+        if(key === window.location.href && data[key].count > 0){
+            // 画像のサイズの計算方法
+            stalker.style.width = `${Math.min(corsor*20, corsor*data[key].count)}px`
+        } 
+    }
+});
+
+const ancherElementList = document.querySelectorAll('a:not([href=""]');
+    console.log(ancherElementList);
+    ancherElementList.forEach((ancherElement) => {
+        ancherElement.addEventListener('click', (e) => {
+            
+            const { currentTarget } = e;
+            const url =currentTarget.href;
+            e.preventDefault();
+            if(data.hasOwnProperty(url)){
+                data[url].count += 1;
+            } else {
+                data[url] = {};
+                data[url].count = 1;
+            }
+            chrome.storage.local.set(data, () => {
+                console.log('Value is set to ' , data);
+            });
+            if(url.indexOf('http') === 0){
+                window.location.href = currentTarget;
+            }
+
+        });
+    });
