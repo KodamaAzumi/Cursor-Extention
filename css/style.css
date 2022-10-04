@@ -4,8 +4,8 @@
     pointer-events: none;
 }
 
-body, a:hover, div:hover, span:hover, img:hover, svg:hover{
-    cursor: none;
+*, *:hover{
+    cursor: none !important;
 }
 
 #stalker {

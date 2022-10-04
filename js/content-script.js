@@ -99,7 +99,7 @@ chrome.storage.local.get(null, (result) => {
         console.log(key);
         if(key === window.location.href && data[key].count > 0){
             // 画像のサイズの計算方法
-            stalker.style.width = `${Math.min(corsor*20, corsor*data[key].count)}px`
+            stalker.style.width = `${Math.min(corsor*30, corsor*data[key].count)}px`
         } 
     }
 });
