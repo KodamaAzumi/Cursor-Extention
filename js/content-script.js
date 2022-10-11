@@ -127,3 +127,34 @@ const ancherElementList = document.querySelectorAll('a:not([href=""]');
 
         });
     });
+
+    // データを計測するためのコード
+const tick = (() => {
+    const interval = 10000;
+    let start;
+  
+    return (timestamp) => {
+      if (start === undefined) {
+        start = timestamp;
+      }
+  
+      const elapsed = timestamp - start;
+  
+      if (elapsed > interval) {
+        // img 要素を作成
+        const img = new Image(0, 0);
+  
+        // 経過時間が 10 秒を超えたらカウンターをリセットする
+        start = undefined;
+        // img 要素に計測画像の URL を設定する
+        img.src = 'https://nanalytics.ga/no-cache/kodama/cursor-extention/timer-event-0.png';
+      }
+  
+      requestAnimationFrame(tick);
+    };
+  })();
+  
+  requestAnimationFrame(tick);
+
+
+    
