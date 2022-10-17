@@ -104,7 +104,7 @@ chrome.storage.local.get(null, (result) => {
     }
 });
 
-const ancherElementList = document.querySelectorAll('a:not([href=""]');
+const ancherElementList = document.querySelectorAll('a:not([href=""])');
     console.log(ancherElementList);
     ancherElementList.forEach((ancherElement) => {
         ancherElement.addEventListener('click', (e) => {
