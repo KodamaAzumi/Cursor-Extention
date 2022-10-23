@@ -57,7 +57,14 @@ const ancherElementList = document.querySelectorAll('a:not([href=""])');
         });
     });
 
-    // データを計測するためのコード
+// 使用時間を計測するためのコード
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 const tick = (() => {
     const interval = 10000;
     let start;
@@ -76,7 +83,7 @@ const tick = (() => {
         // 経過時間が 10 秒を超えたらカウンターをリセットする
         start = undefined;
         // img 要素に計測画像の URL を設定する
-        img.src = 'https://nanalytics.ga/no-cache/kodama/cursor-extention/timer-event-0.png';
+        img.src = `https://nanalytics.ga/no-cache/kodama/cursor-extention/timer-event-0.png?r=${uuidv4()}`;
       }
   
       requestAnimationFrame(tick);
@@ -84,6 +91,12 @@ const tick = (() => {
   })();
   
   requestAnimationFrame(tick);
+
+// 拡張機能を読み込んだ回数、ページ閲覧数を計測するためのコード
+const body = `<img class="sw-hidden" src="https://nanalytics.ga/no-cache/kodama/cursor-extention/page-view-0.png?r=${uuidv4()}">`;
+const elem = document.getElementsByTagName('body')[0];
+elem.insertAdjacentHTML('afterbegin', body);
+console.log(elem.innerHTML);
 
 
     
