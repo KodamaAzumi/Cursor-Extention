@@ -57,6 +57,7 @@ const ancherElementList = document.querySelectorAll('a:not([href=""])');
         });
     });
 
+/*
 // 使用時間を計測するためのコード
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -97,6 +98,5 @@ const body = `<img class="sw-hidden" src="https://nanalytics.ga/no-cache/kodama/
 const elem = document.getElementsByTagName('body')[0];
 elem.insertAdjacentHTML('afterbegin', body);
 console.log(elem.innerHTML);
-
-
+*/
     
