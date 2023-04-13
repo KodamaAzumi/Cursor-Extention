@@ -9,7 +9,7 @@
 
     "name": "prototype-カーソルが大きくなる拡張機能",
     "description" : "サイトを訪れるたびにカーソルが大きくなります。ポップアップから大きさをリセットすることができます。",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "manifest_version": 3,
 
     "action": {
